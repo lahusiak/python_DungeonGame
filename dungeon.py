@@ -8,7 +8,6 @@ def get_locations():
     monster = random.choice(CELLS)
     door = random.choice(CELLS)
     start = random.choice(CELLS)
-
     #if monster, door, or start are the same, do it again
     if monster == door or monster == start or door == start:
         return get_locations()
@@ -26,7 +25,6 @@ def move_player(player, move):
         x -= 1
     elif move == 'DOWN':
         x += 1
-
     return x, y
 
 def get_moves(player):
@@ -40,12 +38,14 @@ def get_moves(player):
     if player[0] == 2:
         moves.remove('DOWN')
     return moves
+
 monster, door, player = get_locations()
+
 while True:
     moves = get_moves(player)
     print("Welcome to the dungeon!")
-    print("You're currently in the ()") #fill in with player position
-    print("You can move ()".format(moves))
+    print("You're currently in the {}".format(player)) #fill in with player position
+    print("You can move {}".format(moves))
     print("Enter QUIT to quit")
 
     move = input("> ")
@@ -53,7 +53,6 @@ while True:
 
     if move == "QUIT":
         break
-
     if move in moves:
         player = move_player(player, move)
     else:
