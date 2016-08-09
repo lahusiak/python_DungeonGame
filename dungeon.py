@@ -1,4 +1,5 @@
 import random
+import sys
 
 CELLS = [(0,0), (0,1), (0,2),
         (1,0), (1,1), (1,2),
@@ -40,8 +41,8 @@ def get_moves(player):
     return moves
 
 def draw_map(player):
-    print (' _ _ _ ')
-    tile = '|()'
+    print(' _ _ _ ')
+    tile = '|{}'
 
     for idx, cell in enumerate(CELLS):
         if idx in [0, 1, 3, 4, 6, 7]:
@@ -68,8 +69,8 @@ while True:
     print("You can move {}".format(moves))
     print("Enter QUIT to quit")
 
-    move = input("> ")
-    move = move.upper()
+    move = input('> ')
+    move = move.capitalize()
 
     if move == "QUIT":
         break
