@@ -8,14 +8,14 @@ CELLS = [(0,0), (0,1), (0,2),
 def get_locations():
     monster = random.choice(CELLS)
     door = random.choice(CELLS)
-    start = random.choice(CELLS)
-    #if monster, door, or start are the same, do it again
-    if monster == door or monster == start or door == start:
+    player = random.choice(CELLS)
+    #if monster, door, or player are the same, do it again
+    if monster == door or monster == player or door == player:
         return get_locations()
-    return monster, door, start
+    return monster, door, player
 
 def move_player(player, move):
-    #Get the player's current locaiton
+    #Get the player's current location
     x, y = player
 
     if move == 'LEFT':
@@ -47,14 +47,14 @@ def draw_map(player):
     for idx, cell in enumerate(CELLS):
         if idx in [0, 1, 3, 4, 6, 7]:
             if cell == player:
-                print(tile.format('X', ))
+                print tile.format('X') ,
             else:
-                print(tile.format('_', ))
+                print tile.format('_') ,
         else:
             if cell == player:
-                print(tile.format('X|', ))
+                print tile.format('X|'),
             else:
-                print(tile.format('_|', ))
+                print tile.format('_|')
 
 
 monster, door, player = get_locations()
@@ -69,10 +69,11 @@ while True:
     print("You can move {}".format(moves))
     print("Enter QUIT to quit")
 
-    move = input('> ')
-    move = move.capitalize()
+    move = raw_input('> ')
+    move = move.upper()
+    print(move)
 
-    if move == "QUIT":
+    if move == 'QUIT':
         break
     if move in moves:
         player = move_player(player, move)
